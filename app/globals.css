@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 164 73% 15%;
+    --foreground: 164 73% 95%;
+    --card: 164 73% 20%;
+    --card-foreground: 164 73% 95%;
+    --popover: 164 73% 20%;
+    --popover-foreground: 164 73% 95%;
+    --primary: 164 73% 57%;
+    --primary-foreground: 164 73% 15%;
+    --secondary: 164 61% 45%;
+    --secondary-foreground: 164 73% 95%;
+    --muted: 164 73% 25%;
+    --muted-foreground: 164 73% 85%;
+    --accent: 164 71% 73%;
+    --accent-foreground: 164 73% 95%;
+    --destructive: 164 71% 63%;
+    --destructive-foreground: 164 73% 95%;
+    --border: 164 73% 25%;
+    --input: 164 73% 25%;
+    --ring: 164 73% 57%;
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+
+  .glass-button {
+    @apply glass rounded-full px-6 py-2 hover:bg-white/20 transition-all duration-300;
+  }
+
+  .cyber-button {
+    @apply relative overflow-hidden rounded-xl bg-primary/90 text-white 
+           shadow-[0_0_20px_rgba(66,226,184,0.4)] transition-all duration-300
+           hover:bg-primary hover:shadow-[0_0_40px_rgba(66,226,184,0.6)]
+           before:absolute before:inset-0 before:z-0
+           before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
+           before:translate-x-[-200%] hover:before:translate-x-[200%]
+           before:transition-transform before:duration-1000;
+  }
+
+  .cyber-button > * {
+    @apply relative z-10;
+  }
+}
+
+.hero-pattern {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2072");
+}
+
+.services-pattern {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?auto=format&fit=crop&q=80");
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.expandable-card {
+  @apply glass-card;
+}
+
+.expanded-card {
+  @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+         w-11/12 md:w-3/4 lg:w-2/3 h-4/5 z-50 overflow-y-auto
+         glass-card p-6;
+}
+
+.overlay {
+  @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-40;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background/50;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/50 rounded-full hover:bg-primary/70 transition-colors;
+}
